@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Laboratório visual para entender como uma senha pode ser transformada em uma sequência codificada." />
+  <title>Senha Braba — laboratório de codificação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Senha Braba início"><span class="brand-mark">✦</span><span>senha<span class="brand-accent">braba</span></span></a>
+    <span class="header-tag">LABORATÓRIO DE CODIFICAÇÃO <i></i></span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow"><span class="eyebrow-dot"></span> aprenda fazendo</p>
+      <h1>Veja uma senha<br /><em>se transformar.</em></h1>
+      <p class="hero-copy">Digite uma senha e acompanhe, em tempo real, cada etapa de uma codificação didática — do texto original ao resultado final.</p>
+    </section>
+
+    <section class="workspace" aria-label="Laboratório de codificação">
+      <div class="input-panel panel">
+        <div class="panel-label"><span>01</span> entrada</div>
+        <label for="password">Sua senha</label>
+        <div class="input-wrap">
+          <input id="password" type="password" autocomplete="off" placeholder="Digite algo secreto..." maxlength="64" />
+          <button id="toggle-password" class="icon-button" type="button" aria-label="Mostrar senha">◉</button>
+        </div>
+        <div class="input-meta"><span id="char-count">0 caracteres</span><span class="privacy"><span class="lock">⌑</span> fica só neste navegador</span></div>
+        <button id="encode-button" class="primary-button" type="button"><span>Codificar senha</span><b>↗</b></button>
+        <p class="empty-hint" id="empty-hint">Comece digitando uma senha para liberar o laboratório.</p>
+      </div>
+
+      <div class="arrow" aria-hidden="true">→</div>
+
+      <div class="result-panel panel" aria-live="polite">
+        <div class="panel-label"><span>02</span> resultado</div>
+        <div class="result-heading"><h2>Senha codificada</h2><span class="status-pill" id="status-pill">aguardando</span></div>
+        <div class="result-box"><code id="encoded-output">—</code><button id="copy-button" class="copy-button" type="button" aria-label="Copiar resultado">⧉</button></div>
+        <div class="result-meta"><span>formato final</span><strong>Base64</strong></div>
+      </div>
+    </section>
+
+    <section class="steps-section">
+      <div class="section-intro"><p class="eyebrow"><span class="eyebrow-dot"></span> por dentro do processo</p><h2>O caminho da sua senha</h2><p>Não é uma caixa-preta. Abra cada etapa e entenda o que acontece com os seus dados.</p></div>
+      <div class="steps" id="steps">
+        <article class="step active"><div class="step-number">01</div><div class="step-content"><div class="step-title"><h3>Texto original</h3><span>entrada</span></div><p>A senha é recebida localmente, sem ser enviada para nenhum servidor.</p><div class="step-value muted" id="step-original">aguardando entrada</div></div><div class="step-icon">↓</div></article>
+        <article class="step"><div class="step-number">02</div><div class="step-content"><div class="step-title"><h3>Conversão para bytes</h3><span>UTF-8</span></div><p>Cada caractere vira uma sequência numérica para podermos trabalhar com ele.</p><div class="step-value" id="step-bytes">—</div></div><div class="step-icon">↓</div></article>
+        <article class="step"><div class="step-number">03</div><div class="step-content"><div class="step-title"><h3>Máscara didática</h3><span>XOR · 42</span></div><p>Aplicamos uma máscara simples (42) em cada byte. É apenas para visualizar a transformação.</p><div class="step-value" id="step-xor">—</div></div><div class="step-icon">↓</div></article>
+        <article class="step"><div class="step-number">04</div><div class="step-content"><div class="step-title"><h3>Representação hexadecimal</h3><span>HEX</span></div><p>Os valores transformados são escritos em hexadecimal, uma forma compacta de ler bytes.</p><div class="step-value" id="step-hex">—</div></div><div class="step-icon">↓</div></article>
+        <article class="step final"><div class="step-number">05</div><div class="step-content"><div class="step-title"><h3>Codificação final</h3><span>BASE64</span></div><p>A sequência vira texto Base64 para poder ser compartilhada como texto.</p><div class="step-value" id="step-base64">—</div></div><div class="step-icon done">✓</div></article>
+      </div>
+    </section>
+
+    <aside class="notice"><span class="notice-icon">!</span><div><strong>Importante: isto é uma demonstração.</strong><p>Codificação não é criptografia. O método deste laboratório é reversível e não deve ser usado para proteger senhas reais. Em sistemas reais, use funções de hash próprias para senhas, como Argon2id ou bcrypt.</p></div></aside>
+  </main>
+  <footer><span>senha<span class="brand-accent">braba</span> <small>· feito para aprender</small></span><span>seus dados não saem daqui</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
